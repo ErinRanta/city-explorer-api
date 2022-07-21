@@ -40,7 +40,10 @@ server.get('/weather', (request, response) => {
 
 
 
+
     
+
+
 
   // find appropriate value from weatherData
   // use search Query to find an object within weather data
@@ -69,5 +72,9 @@ server.use('*', (request, response) => {
 
 server.listen(PORT, () => {
   console.log('Server is running on port : ' + PORT);
+
+});
+
+
 });
 
