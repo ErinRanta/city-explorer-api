@@ -1,6 +1,9 @@
 {
 
   "name": "city-explorer-api",
+
+
+  "name": "city-explorer-api",
   "version": "1.0.0",
   "description": "weather",
   "main": "ok",
@@ -8,11 +11,17 @@
     "test": "ok"
 
   "name": "server",
+
   "version": "1.0.0",
-  "description": "city",
-  "main": "1",
+  "description": "CityExplorer Lab Backend",
+  "main": "index.js",
   "scripts": {
+
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+
     "test": "test"
+
 
   },
   "repository": {
@@ -28,6 +37,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "nodemon": "^2.0.19"
   }
 }

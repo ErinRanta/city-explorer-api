@@ -37,6 +37,14 @@ server.get('/weather', (request, response) => {
     return cityName === el.city_name.toLowerCase();
   });
 
+
+
+
+
+    
+
+
+
   // find appropriate value from weatherData
   // use search Query to find an object within weather data
   let city = weatherCity.find(city => {
@@ -64,4 +72,9 @@ server.use('*', (request, response) => {
 
 server.listen(PORT, () => {
   console.log('Server is running on port : ' + PORT);
+
 });
+
+
+});
+
