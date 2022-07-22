@@ -4,20 +4,25 @@ require('dotenv').config();
 // require is a function built into Node, loads exported values into our current file.
 const express = require('express'); // whats happening at this point.
 const cors = require('cors');
-const weatherData = require ('./data/weather.json');
+const weatherCity = require ('./data/weather.json');
 const server = express();
  server.use(cors);
 
 
-const PORT = process.env.PORT;
+
+const PORT = process.env.PORT
+
+
 
 
 class Forecast {
   constructor(obj) {
     this.date = obj.dateime;
     this.condition = condition;
+    this.description = 'low of ' + obj.low_temp + ', high of ' + obj.high_temp + ' with ' + obj.weather.description.toLowerCase();
   }
 }
+
 
 server.get('/', (request, response) => {
   response.send('hello!');
@@ -25,6 +30,7 @@ server.get('/', (request, response) => {
 
 
 // create a weather route //
+
 
 server.get('/weather', (request, response) => {
   console.log(request.query);
@@ -34,9 +40,10 @@ server.get('/weather', (request, response) => {
     throw new Error('Please send lat lon and search query as a string');
   }
 
+    
 
+  // find appropriate value from weatherData
 
-  // / find appropriate value from weatherData
   // use search Query to find an object within weather data
 
   let city = weatherData.find(city => {
@@ -81,5 +88,9 @@ server.use('*', (request, response) => {
 
 //server opens up to listen//
 server.listen(PORT, () => {
+
   console.log('Server is running on port :: ' + PORT);
 });
+
+
+
