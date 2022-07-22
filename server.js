@@ -12,7 +12,7 @@ const PORT = process.env.PORT;
 
 
 
-const weatherData = require('./data/weather.json');
+
 
 
 
