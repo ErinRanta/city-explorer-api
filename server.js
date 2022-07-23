@@ -6,7 +6,10 @@ const express = require('express'); // whats happening at this point.
 const cors = require('cors');
 const weatherData = require ('./data/weather.json');
 const server = express();
- server.use(cors);
+ server.use(cors());
+
+ 
+
 
 
 const PORT = process.env.PORT;
@@ -16,12 +19,15 @@ class Forecast {
   constructor(obj) {
     this.date = obj.dateime;
     this.condition = condition;
+    this.description = 'low of ' + obj.low_temp + ', high of ' + obj.high_temp + ' with ' + obj.weather.description.toLowerCase();
   }
 }
+
 
 server.get('/', (request, response) => {
   response.send('hello!');
 });
+
 
 
 // create a weather route //
@@ -42,8 +48,8 @@ server.get('/weather', (request, response) => {
   let city = weatherData.find(city => {
     return city.city_name.toLowerCase() === searchQuery.toLowerCase();
   });
-
-  if (city) {
+  
+ if (city) {
     let forecastArray = city.data.map(forecast => new Forecast(forecast));
     response.send(forecastArray);
   } else {
