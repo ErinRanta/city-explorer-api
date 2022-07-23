@@ -26,3 +26,23 @@ Collaborator: Austin Limanek
 
 ![Lab 07 WB](img/Day2WB.png)
 
+Name of feature: ________________________Weather________
+
+Estimate of time needed to complete: 2.5 hours
+
+Start time: 5PM
+
+Finish time: ?
+
+Actual time needed to complete: _Many hours split up. spent a long time with npm start (is not working)
+
+Name of feature: Movies
+
+Estimate of time needed to complete: n/a_____
+
+Start time: _____
+
+Finish time: _____
+
+Actual time needed to complete: Will add when completed
+
