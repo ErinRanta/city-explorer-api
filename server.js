@@ -68,7 +68,7 @@ function forecastArray(weatherCity) {
 
 
 
-//error section //
+//error section ///
 
 server.get('/error', (request, response) => {
 
