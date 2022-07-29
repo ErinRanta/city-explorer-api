@@ -5,7 +5,7 @@ const express = require('express');
 const cors = require('cors');
 const weatherData = require('./data/weather.json');
 const server = express(); 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT;
 server.use(cors());
 
 class Forecast {
@@ -57,6 +57,3 @@ server.use('*', (request, response) => {
 server.listen(PORT, () => {
   console.log('Server is running on port : ' + PORT);
 });
-
-
-
