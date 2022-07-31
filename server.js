@@ -4,12 +4,17 @@ require('dotenv').config();
 const axios = require('axios');
 const express = require('express');
 const cors = require('cors');
+
 const app = express();
 const PORT = process.env.PORT;
  
  
-app.use(cors());
+server.use(cors());
  
+
+
+
+
 class Forecast {
  constructor(date, condition, high, low) {
    this.date = date;
@@ -53,11 +58,11 @@ function makeMoviesArray(city) {
 }
  
  
-app.get('/', (request, response) => {
+server.get('/', (request, response) => {
  response.send('hello from home!!');
 });
  
-app.get('/weather', (request, response) => {
+server.get('/weather', (request, response) => {
  
  let url = `https://api.weatherbit.io/v2.0/forecast/daily?&key=582f15fe04aa420bae9a3cf75952050fc&lat=${request.query.lat}&lon=${request.query.lon}`;
  
@@ -73,7 +78,7 @@ app.get('/weather', (request, response) => {
    });
 });
  
-app.get('/movies', (request, response) => {
+server.get('/movies', (request, response) => {
  
  let url = `https://api.themoviedb.org/3/movie/550?api_key=73e778dc212937332b7eca65d749549a&query=${request.query.cityName}`;
  // console.log('movie url',url);
@@ -89,13 +94,18 @@ app.get('/movies', (request, response) => {
      response.status(500).send(e);
    });
 });
+
  
-app.use('*', (error, request, response, next) => {
+server.use('*', (error, request, response, next) => {
  response.send(500).send(error);
 });
  
 // opens up the server for requests
-app.listen(PORT, () => {
+server.listen(PORT, () => {
  console.log('Server is running on port :: ' + PORT);
 });
+
+
+
+
 
