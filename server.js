@@ -9,7 +9,7 @@ const app = express();
 const PORT = process.env.PORT;
  
  
-server.use(cors());
+app.use(cors());
  
 
 
@@ -58,11 +58,11 @@ function makeMoviesArray(city) {
 }
  
  
-server.get('/', (request, response) => {
+app.get('/', (request, response) => {
  response.send('hello from home!!');
 });
  
-server.get('/weather', (request, response) => {
+app.get('/weather', (request, response) => {
  
  let url = `https://api.weatherbit.io/v2.0/forecast/daily?&key=582f15fe04aa420bae9a3cf75952050fc&lat=${request.query.lat}&lon=${request.query.lon}`;
  
@@ -78,7 +78,7 @@ server.get('/weather', (request, response) => {
    });
 });
  
-server.get('/movies', (request, response) => {
+app.get('/movies', (request, response) => {
  
  let url = `https://api.themoviedb.org/3/movie/550?api_key=73e778dc212937332b7eca65d749549a&query=${request.query.cityName}`;
  // console.log('movie url',url);
@@ -96,12 +96,12 @@ server.get('/movies', (request, response) => {
 });
 
  
-server.use('*', (error, request, response, next) => {
+app.use('*', (error, request, response, next) => {
  response.send(500).send(error);
 });
  
 // opens up the server for requests
-server.listen(PORT, () => {
+app.listen(PORT, () => {
  console.log('Server is running on port :: ' + PORT);
 });
 
