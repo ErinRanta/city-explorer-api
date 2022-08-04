@@ -12,17 +12,14 @@ const PORT = process.env.PORT;
 app.use(cors());
  
 
-
-
-
 class Forecast {
  constructor(date, condition, high, low) {
    this.date = date;
    this.condition = condition;
    this.high = high;
    this.low = low;
-   this.weatherAPIKey = process.env.REACT_APP_WEATHERBIT_API_KEY;
-   this.movieAPIKey = process.env.REACT_APP_TMDB_API_KEY;
+   this.weatherAPIKey = process.env.WEATHERBIT_API_KEY;
+   this.movieAPIKey = process.env.TMDB_API_KEY;
  }
 }
  
@@ -58,17 +55,21 @@ function makeMoviesArray(city) {
 }
  
  
-app.get('/', (request, response) => {
- response.send('hello from home!!');
-});
+// app.get('/', (request, response) => {
+//  response.send('hello from home!!');
+// });
  
 app.get('/weather', (request, response) => {
+  const searchQuery = request.query.searchQuery;
+  const lat=request.query.lat;
+  const lon=request.query.lon;
+  console.log(searchQuery);
+ let url = `https://api.weatherbit.io/v2.0/forecast/daily?&key=${process.env.WEATHERBIT_API_KEY}&city=${searchQuery}&${lat}&${lon}&days=5`;
  
- let url = `https://api.weatherbit.io/v2.0/forecast/daily?&key=key=${key}&city=${searchQuery}&days=5`;
- 
+
  axios.get(url)
    .then(res => {
-     // console.log('res.data.data', res.data.data);
+     console.log('res.data.data', res.data.data);
      let forecastArr = makeForecastArray(res.data.data);
      response.send(forecastArr);
    })
@@ -79,9 +80,13 @@ app.get('/weather', (request, response) => {
 });
  
 app.get('/movies', (request, response) => {
- 
- let url = `https://api.themoviedb.org/3/movie?api_key=${process.env.MOVIE_API_KEY}&query=${search}`;
- // console.log('movie url',url);
+  const searchQuery = request.query.searchQuery;
+  console.log(searchQuery);
+ let url = `https://api.themoviedb.org/3/movie?api_key=${process.env.MOVIE_API_KEY}&query=${searchQuery}`;
+//  console.log('movie url',url);
+
+  
+
  
  axios.get(url)
    .then(res => {
@@ -104,6 +109,8 @@ app.use('*', (error, request, response, next) => {
 app.listen(PORT, () => {
  console.log('Server is running on port :: ' + PORT);
 });
+
+
 
 
 
