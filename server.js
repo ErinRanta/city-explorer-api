@@ -65,7 +65,7 @@ app.get('/weather', (request, response) => {
   const lon=request.query.lon;
   console.log(searchQuery);
  let url = `https://api.weatherbit.io/v2.0/forecast/daily?&key=${process.env.WEATHERBIT_API_KEY}&city=${searchQuery}&${lat}&${lon}&days=5`;
- 
+//  let url = http: //localhost:3002/weather?lat=100&lon=100&searchQuery=seattle`;
 
  axios.get(url)
    .then(res => {
@@ -82,7 +82,9 @@ app.get('/weather', (request, response) => {
 app.get('/movies', (request, response) => {
   const searchQuery = request.query.searchQuery;
   console.log(searchQuery);
- let url = `https://api.themoviedb.org/3/movie?api_key=${process.env.MOVIE_API_KEY}&query=${searchQuery}`;
+ let url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.TMDB_API_KEY}&query=${searchQuery}`;
+//  let url = `https://api.themoviedb.org/3/movie/550?api_key=73e778dc212937332b7eca65d749549a`&query=${request.query.cityName}`;
+
 //  console.log('movie url',url);
 
   
