@@ -1,5 +1,3 @@
-
-
 'use strict';
 
 require('dotenv').config();
@@ -9,7 +7,9 @@ const app = express();
 const cors = require('cors');
 
 const movieAPIKey = process.env.REACT_APP_TMDB_API_KEY;
+
 app.use(cors());
+
 
 class Movie {
   constructor(title, overview, releaseDate, popularity) {
@@ -42,6 +42,7 @@ const makeMoviesArray = (city) => {
     let releaseDate = el.release_date;
     let popularity = el.popularity;
     return new Movie(title, overview, releaseDate, popularity);
+    
   });
   return moviesArr;
 };

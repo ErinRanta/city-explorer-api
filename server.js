@@ -4,14 +4,15 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const cors = require('cors');
+
 app.use(cors());
-const PORT = process.env.PORT;
+
 const getWeather = require('./weather');
 const getMovies = require('./movies');
-
+const PORT = process.env.PORT;
 
 app.get('/', (request, response) => {
-  response.send('hello!');
+  response.send('hello');
 });
 
 app.get('/weather', (request, response) => {
@@ -29,6 +30,9 @@ app.use('*', (error, request, response) => {
 app.listen(PORT, () => {
   console.log('Server is running on port :: ' + PORT);
 });
+
+
+
 
 
 
