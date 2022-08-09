@@ -10,6 +10,7 @@ const movieAPIKey = process.env.REACT_APP_TMDB_API_KEY;
 
 app.use(cors());
 
+
 class Movie {
   constructor(title, overview, releaseDate, popularity) {
     this.title = title;
@@ -26,6 +27,8 @@ const getMovies = (cityName, response) => {
       let moviesArr = makeMoviesArray(res.data.results);
       response.send(moviesArr);
     })
+
+
     .catch((e) => {
       console.log('movies error',e);
       response.status(500).send(e);
@@ -39,6 +42,7 @@ const makeMoviesArray = (city) => {
     let releaseDate = el.release_date;
     let popularity = el.popularity;
     return new Movie(title, overview, releaseDate, popularity);
+    
   });
   return moviesArr;
 };
